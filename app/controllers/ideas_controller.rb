@@ -1,4 +1,5 @@
 class IdeasController < ApplicationController
+  before_filter :authenticate_user!, except: [:index]
   before_action :set_idea, only: [:show, :edit, :update, :destroy]
 
   # GET /ideas
