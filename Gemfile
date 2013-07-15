@@ -47,10 +47,8 @@ gem 'devise'
 gem 'sendgrid'
 gem 'thin'
 
-group :assets do
-  gem 'compass-rails'
-  gem 'zurb-foundation'
-end
+#gem 'compass-rails'
+gem 'zurb-foundation'
 
 group :development do
   gem 'better_errors'
