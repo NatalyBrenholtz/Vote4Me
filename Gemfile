@@ -31,6 +31,11 @@ gem 'thin'
 
 #gem 'compass-rails'
 gem 'zurb-foundation'
+#gem 'protected_attributes'
+
+group :production do
+  gem 'pg'
+end
 
 group :development do
   gem 'better_errors'
@@ -47,6 +52,7 @@ end
 group :development, :test do
   gem 'factory_girl_rails'
   gem 'rspec-rails'
+  gem 'pry-debugger'
 end
 
 group :test do
