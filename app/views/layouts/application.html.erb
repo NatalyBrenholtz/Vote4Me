@@ -16,8 +16,12 @@
 
     <%= render 'layouts/navigation' %>
 
-    <%= display_flash_messages %>
-    <%= yield %>
+    <div class="row">
+      <div class="large-12 columns">
+        <%= display_flash_messages %>
+        <%= yield %>
+      </div>
+    </div>
 
     <%= javascript_include_tag "application" %>
   </body>
