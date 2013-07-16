@@ -13,34 +13,8 @@
   </head>
 
   <body>
-  	<nav class="top-bar">
-		  <ul class="title-area">
-        <li class="name">
-	      	<h1><%= link_to "Vote 4 Me" %></h1>
-        </li>
-	  	</ul>
-	  	<section class="top-bar-section">
-        <ul class="left">
-          <li class="divider"></li>
-          <li><%= link_to "Ideas" %></li>
-          <li class="divider"></li>
-          <li><%= link_to "Add Idea" %></li>
-          <li class="divider"></li>
-        </ul>
-	    	<ul class="right">
-	      	<li class="divider"></li>
-	      	<% if user_signed_in? %>
-            <li> Logged in as <strong><%= current_user.email %></strong>.</li>
-            <li class="divider"></li>
-            <li><%= link_to 'Edit profile', edit_user_registration_path %></li>
-            <li><%= link_to "Logout", destroy_user_session_path, method: :delete %></li>
-          <% else %>
-            <li><%= link_to "Sign up", new_user_registration_path %></li>
-            <li><%= link_to "Login", new_user_session_path %></li>
-          <% end %>
-	    	</ul>
-	    </section>
-	  </nav>
+
+    <%= render 'layouts/navigation' %>
 
     <%= display_flash_messages %>
     <%= yield %>
