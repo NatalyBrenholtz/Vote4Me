@@ -1,4 +1,15 @@
 module FoundationHelper
+  # <div class="alert-box [success alert secondary]">
+  #   This is an alert box.
+  #   <a href="" class="close">&times;</a>
+  # </div>
+  DEFAULT_KEY_MATCHING = {
+    :alert     => :alert,
+    :notice    => :success,
+    :info      => :standard,
+    :secondary => :secondary,
+  }
+
   def display_flash_messages(key_matching = {})
     key_matching = DEFAULT_KEY_MATCHING.merge(key_matching)
 
