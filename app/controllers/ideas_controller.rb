@@ -1,11 +1,11 @@
 class IdeasController < ApplicationController
   before_filter :authenticate_user!, except: [:index]
-  before_action :set_idea, only: [:show, :edit, :update, :destroy]
+  before_action :set_idea, only: [:show, :edit, :update, :destroy, :vote]
 
   # GET /ideas
   # GET /ideas.json
   def index
-    @ideas = Idea.all(:order => "score DESC")
+    @ideas = Idea.order("votes DESC").find_with_reputation(:votes, :all)
   end
 
   # GET /ideas/1
@@ -25,7 +25,6 @@ class IdeasController < ApplicationController
   # POST /ideas
   # POST /ideas.json
   def create
-    #@idea = Idea.new(idea_params)
     @idea = current_user.ideas.new(idea_params)
     respond_to do |format|
       if @idea.save
@@ -60,6 +59,12 @@ class IdeasController < ApplicationController
       format.html { redirect_to ideas_url }
       format.json { head :no_content }
     end
+  end
+
+  def vote
+    value = params[:type] == "Up" ? 1 : -1
+    @idea.add_or_update_evaluation(:votes, value, current_user)
+    redirect_to :back, notice: "Thank you for voting"
   end
 
   private

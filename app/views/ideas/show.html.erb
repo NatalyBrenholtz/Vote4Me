@@ -9,13 +9,16 @@
 </p>
 
 <p>
-  <strong>Score:</strong>
-  <%= @idea.score %>
+  <strong>User:</strong>
+  <%= @idea.user.email %>
 </p>
 
 <p>
-  <strong>User:</strong>
-  <%= @idea.user.email %>
+  <strong>Votes:</strong>
+  <%= pluralize @idea.reputation_for(:votes).to_i, "vote" %>
+
+  <%= link_to "Up", vote_idea_path(@idea, type: "Up"), method: "post" %> |
+  <%= link_to "Down", vote_idea_path(@idea, type: "Down"), method: "post" %>
 </p>
 
 <%= link_to 'Edit', edit_idea_path(@idea) %> |

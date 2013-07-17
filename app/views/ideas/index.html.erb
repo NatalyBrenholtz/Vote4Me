@@ -5,7 +5,7 @@
     <tr>
       <th>Title</th>
       <th>Description</th>
-      <th>Score</th>
+      <th>Votes</th>
       <th>User</th>
       <th></th>
       <th></th>
@@ -18,7 +18,7 @@
       <tr>
         <td><%= idea.title %></td>
         <td><%= idea.description %></td>
-        <td><%= idea.score %></td>
+        <td><%= idea.votes.to_i %></td>
         <td><%= idea.user.email %></td>
         <td><%= link_to 'Show', idea %></td>
         <td><%= link_to 'Edit', edit_idea_path(idea) %></td>
