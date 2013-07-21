@@ -15,7 +15,7 @@
 	  <ul class="right">
 	    <li class="divider"></li>
 	    <% if user_signed_in? %>
-        <li> Logged in as <strong><%= current_user.email %></strong>.</li>
+        <li style="color: #fff"> Logged in as <strong><%= current_user.email %></strong></li>
         <li class="divider"></li>
         <li><%= link_to 'Edit profile', edit_user_registration_path %></li>
          <li class="divider"></li>

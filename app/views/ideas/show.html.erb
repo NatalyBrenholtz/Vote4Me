@@ -15,11 +15,17 @@
 
 <p>
   <strong>Votes:</strong>
-  <%= pluralize @idea.reputation_for(:votes).to_i, "vote" %>
-
-  <%= link_to "Up", vote_idea_path(@idea, type: "Up"), method: "post" %> |
-  <%= link_to "Down", vote_idea_path(@idea, type: "Down"), method: "post" %>
+  <%= pluralize @idea.votes, "vote" %>
 </p>
 
-<%= link_to 'Edit', edit_idea_path(@idea) %> |
-<%= link_to 'Back', ideas_path %>
+<div class='field'>
+
+    <input type="text" id="voting_score" />
+    <%= link_to 'Rate', vote_idea_path(@idea), method: "post" %>
+  
+</div>
+
+<p>
+  <%= link_to 'Edit', edit_idea_path(@idea) %> |
+  <%= link_to 'Back', ideas_path %>
+</p>

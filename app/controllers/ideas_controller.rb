@@ -5,7 +5,7 @@ class IdeasController < ApplicationController
   # GET /ideas
   # GET /ideas.json
   def index
-    @ideas = Idea.order("votes DESC").find_with_reputation(:votes, :all)
+    @ideas = Idea.by_votes
   end
 
   # GET /ideas/1
@@ -51,6 +51,8 @@ class IdeasController < ApplicationController
     end
   end
 
+  #TODO: should we remove from idea_votes table the deleted ideas records?
+
   # DELETE /ideas/1
   # DELETE /ideas/1.json
   def destroy
@@ -62,9 +64,15 @@ class IdeasController < ApplicationController
   end
 
   def vote
-    value = params[:type] == "Up" ? 1 : -1
-    @idea.add_or_update_evaluation(:votes, value, current_user)
-    redirect_to :back, notice: "Thank you for voting"
+    vote = current_user.idea_votes.new
+    #vote.value = params['voting_score'].to_i
+    vote.value = 3
+    vote.idea_id = params[:id]
+    if vote.save
+      redirect_to :back, notice: "Thank you for voting."
+    else
+      redirect_to :back, alert: "Unable to vote, perhaps you already did."
+    end
   end
 
   private
@@ -75,6 +83,6 @@ class IdeasController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def idea_params
-      params.require(:idea).permit(:title, :description, :score, :user_id)
+      params.require(:idea).permit(:title, :description, :user_id)
     end
 end

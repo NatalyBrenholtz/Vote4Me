@@ -24,8 +24,7 @@ gem 'thin'
 
 #gem 'compass-rails'
 gem 'zurb-foundation'
-#gem 'protected_attributes'
-#gem 'activerecord-reputation-system', require: 'reputation_system'
+gem 'protected_attributes'
 gem 'activerecord-reputation-system', github: 'NARKOZ/activerecord-reputation-system', branch: 'rails4'
 
 group :production do
