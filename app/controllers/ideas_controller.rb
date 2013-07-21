@@ -71,6 +71,7 @@ class IdeasController < ApplicationController
     if vote.save
       redirect_to :back, notice: "Thank you for voting."
     else
+      #Todo: check what is the error and show accordingly
       redirect_to :back, alert: "Unable to vote, #{vote.errors.full_messages.first}."
     end
   end

@@ -19,13 +19,16 @@
 </p>
 
 <div>
+  <!-- Todo: don't allow to edit if it's the owner -->
  <!-- % if current_user && current_user.can_vote_for?(@idea) % -->
 
-  <%= form_tag(vote_idea_path(@idea)) do %>
-    <div style="width: 10%">
-      <%= number_field_tag :voting_score, @idea_vote.value, in: 0..3 %>
-    </div>
-    <%= submit_tag "Rate" %>
+  <% if current_user && !@idea.user.can_edit?(current_user) %>
+    <%= form_tag(vote_idea_path(@idea)) do %>
+      <div style="width: 10%">
+        <%= number_field_tag :voting_score, @idea_vote.value, in: 0..3 %>
+      </div>
+      <%= submit_tag "Rate" %>
+    <% end %>
   <% end %>
 </div>
 
