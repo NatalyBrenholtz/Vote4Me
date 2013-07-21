@@ -16,7 +16,13 @@ class User < ActiveRecord::Base
 
   # TODO: check here if user's budget allows the voting
   def can_vote_for?(idea)
-    idea_votes.build(idea: idea).valid?
+    vote = idea_votes.build(idea_id: idea.id)
+    vote.value = 0
+    vote.valid?
+  end
+
+  def can_edit?(user)
+    self == user
   end
 
 end

@@ -15,4 +15,9 @@ class Idea < ActiveRecord::Base
   def votes
     read_attribute(:votes) || idea_votes.sum(:value)
   end
+
+  def user_vote(user)
+    self.idea_votes.where('user_id = ?', user.id)
+  end
+
 end

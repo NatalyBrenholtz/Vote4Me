@@ -11,6 +11,7 @@ class IdeasController < ApplicationController
   # GET /ideas/1
   # GET /ideas/1.json
   def show
+    @idea_vote = current_user_vote || IdeaVote.new
   end
 
   # GET /ideas/new
@@ -64,14 +65,14 @@ class IdeasController < ApplicationController
   end
 
   def vote
-    vote = current_user.idea_votes.new
-    #vote.value = params['voting_score'].to_i
-    vote.value = 3
+    #get existing vote or create a new one
+    vote = current_user_vote || current_user.idea_votes.new
     vote.idea_id = params[:id]
+    vote.value = params['voting_score'].to_i
     if vote.save
       redirect_to :back, notice: "Thank you for voting."
     else
-      redirect_to :back, alert: "Unable to vote, perhaps you already did."
+      redirect_to :back, alert: "Unable to vote, #{vote.errors.full_messages.first}."
     end
   end
 
@@ -79,6 +80,10 @@ class IdeasController < ApplicationController
     # Use callbacks to share common setup or constraints between actions.
     def set_idea
       @idea = Idea.find(params[:id])
+    end
+
+    def current_user_vote
+      @idea.user_vote(current_user).first
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.

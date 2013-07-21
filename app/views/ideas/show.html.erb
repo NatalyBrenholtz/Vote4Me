@@ -18,14 +18,22 @@
   <%= pluralize @idea.votes, "vote" %>
 </p>
 
-<div class='field'>
+<div>
+ <!-- % if current_user && current_user.can_vote_for?(@idea) % -->
 
-    <input type="text" id="voting_score" />
-    <%= link_to 'Rate', vote_idea_path(@idea), method: "post" %>
-  
+  <%= form_tag(vote_idea_path(@idea)) do %>
+    <div style="width: 10%">
+      <%= number_field_tag :voting_score, @idea_vote.value, in: 0..3 %>
+    </div>
+    <%= submit_tag "Rate" %>
+  <% end %>
 </div>
 
+<br>
+
 <p>
-  <%= link_to 'Edit', edit_idea_path(@idea) %> |
+  <% if current_user && @idea.user.can_edit?(current_user) %>
+    <%= link_to 'Edit', edit_idea_path(@idea) %> |
+  <% end %>
   <%= link_to 'Back', ideas_path %>
 </p>

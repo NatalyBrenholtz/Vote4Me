@@ -42,6 +42,7 @@ GEM
     binding_of_caller (0.7.2)
       debug_inspector (>= 0.0.1)
     builder (3.1.4)
+    callsite (0.0.11)
     coderay (1.0.9)
     coffee-rails (4.0.0)
       coffee-script (>= 2.2.0)
@@ -110,6 +111,10 @@ GEM
     mail (2.5.4)
       mime-types (~> 1.16)
       treetop (~> 1.4.8)
+    meta_request (0.2.7)
+      callsite
+      rack-contrib
+      railties
     method_source (0.8.1)
     mime-types (1.23)
     minitest (4.7.5)
@@ -129,6 +134,8 @@ GEM
     quiet_assets (1.0.2)
       railties (>= 3.1, < 5.0)
     rack (1.5.2)
+    rack-contrib (1.1.0)
+      rack (>= 0.9.1)
     rack-test (0.6.2)
       rack (>= 1.0)
     rails (4.0.0)
@@ -228,6 +235,7 @@ DEPENDENCIES
   guard-rails
   guard-rspec
   jquery-rails
+  meta_request
   pg
   protected_attributes
   pry-debugger

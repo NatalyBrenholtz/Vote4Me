@@ -6,7 +6,7 @@ class IdeaVote < ActiveRecord::Base
   belongs_to :idea
 
   validates_uniqueness_of :idea_id, scope: :user_id
-  validates_inclusion_of :value, in: Array(1..3)
+  #validates_inclusion_of :value, in: Array(0..3)
   validate :ensure_not_author
 
   def ensure_not_author
