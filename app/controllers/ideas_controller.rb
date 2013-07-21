@@ -11,7 +11,8 @@ class IdeasController < ApplicationController
   # GET /ideas/1
   # GET /ideas/1.json
   def show
-    @idea_vote = current_user_vote || IdeaVote.new
+    #get existing vote or create a new one and initialize value to 0
+    @idea_vote = current_user_vote || IdeaVote.new(value: 0)
   end
 
   # GET /ideas/new
