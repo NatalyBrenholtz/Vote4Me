@@ -7,8 +7,8 @@ class User < ActiveRecord::Base
 
   attr_accessible :email, :name, :password, :encrypted_password
 
-  has_many :ideas
-  has_many :idea_votes
+  has_many :ideas, dependent: :destroy
+  has_many :idea_votes, dependent: :destroy
 
   def total_votes
     IdeaVote.joins(:idea).where(ideas: {user_id: self.id}).sum('value')

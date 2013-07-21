@@ -1,7 +1,7 @@
 class Idea < ActiveRecord::Base
 
   belongs_to :user
-  has_many :idea_votes
+  has_many :idea_votes, dependent: :destroy
 
   attr_accessible :title, :description
 

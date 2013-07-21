@@ -53,8 +53,6 @@ class IdeasController < ApplicationController
     end
   end
 
-  #TODO: should we remove from idea_votes table the deleted ideas records?
-
   # DELETE /ideas/1
   # DELETE /ideas/1.json
   def destroy
